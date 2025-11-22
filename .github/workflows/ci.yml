@@ -1,13 +1,18 @@
 name: Basic Job
 on:
-    push: 
-        branches: ['main','feature/basic']
+    workflow_dispatch:
+    #push: 
+    #    branches: ['main','feature/basic']
 jobs:
   basic_job: 
     name: Basic Job
     runs-on: ubuntu-latest
     steps:
-      - name: Running Echo 
-        run: echo "Hello World"
       - name: Checkout Actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+      - name: Welcome Message
+        run: echo "Hello World..!!"
+      - name: Contents of README.md file
+        run: cat README.md
+      - name: List of files
+        run: ls
