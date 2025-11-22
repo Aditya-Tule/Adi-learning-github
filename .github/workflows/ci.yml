@@ -4,6 +4,7 @@ on:
         branches: ['main','feature/basic']
 jobs:
   basic_job: 
+    name: Basic Job
     runs-on: ubuntu-latest
     steps:
       - name: Running Echo 
