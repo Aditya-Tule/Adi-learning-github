@@ -1,6 +1,6 @@
 name: variable-example
 on: 
-    workflow_dispatch: 
+    push: 
 
 jobs:
     Multiple-Variable:
