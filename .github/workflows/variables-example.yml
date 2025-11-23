@@ -9,7 +9,9 @@ jobs:
         - name: Docker Build
           run: docker pull alpine
         - name: Docker Tag
-          run: docker tag alpine:latest test:adi
+          run: docker tag alpine:latest aditule/test:adi
         - name: Docker login
           run: docker login --username=aditule --password=Cooldudes786*
+        - name: Docker push
+          run: docker push aditule/test:adi
 
