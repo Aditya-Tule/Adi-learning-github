@@ -8,6 +8,8 @@ jobs:
       steps:
         - name: Docker Build
           run: docker pull alpine
-        - name: Docker image list
-          run: docker images
-        - run: docker image ls | grep alpine
+        - name: Docker Tag
+          run: docker tag alpine:latest test:adi
+        - name: Docker login
+          run: docker login --username=aditule --password=Cooldudes786*
+
