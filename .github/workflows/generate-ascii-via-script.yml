@@ -1,0 +1,14 @@
+name: Generate Ascii via Script
+on:
+    workflow_dispatch:
+jobs:
+    ascii_script:
+      runs-on: 
+        [ubuntu-latest]
+      steps:
+       - name: Checkout stage
+         uses: actions/checkout@v4
+       - name: Running script
+         run: |
+               chmod 777 ./ascii-script.sh
+               ./ascii-script.sh
