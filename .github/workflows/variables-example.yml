@@ -5,11 +5,17 @@ on:
 jobs:
     Multiple-Variable:
       runs-on: ubuntu-latest
+      env:
+        DOCKER_CMD: docker
+        DEPLOY_IMAGE: aditule/test:adi
       steps:
         - name: Docker Build
-          run: docker pull alpine
+          env: 
+            DOCKER_CMD: docker
+            IMAGE: alpine
+          run: $DOCKER_CMD pull $IMAGE
         - name: Docker Tag
-          run: docker tag alpine:latest aditule/test:adi
+          run: docker tag alpine:latest $DEPLOY_IMAGE
         - name: Docker login
           run: docker login --username=aditule --password=Cooldudes786*
         - name: Docker push
