@@ -2,22 +2,25 @@ name: variable-example
 on: 
     push: 
 
+env: 
+    CMD: push
+
 jobs:
     Multiple-Variable:
       runs-on: ubuntu-latest
-      env:
+      env: # Job level env variable
         DOCKER_CMD: docker
         DEPLOY_IMAGE: aditule/test:adi
       steps:
         - name: Docker Build
-          env: 
+          env: # Step level env variable
             DOCKER_CMD: docker
             IMAGE: alpine
-          run: $DOCKER_CMD pull $IMAGE
+          run: $DOCKER_CMD pull ${{ env.IMAGE }}
         - name: Docker Tag
-          run: docker tag alpine:latest $DEPLOY_IMAGE
+          run: docker tag alpine:latest ${{ env.DEPLOY_IMAGE }}
         - name: Docker login
           run: docker login --username=aditule --password=Cooldudes786*
-        - name: Docker push
-          run: docker push aditule/test:adi
+        - name: Docker ${{ env.CMD }}
+          run: docker $CMD aditule/test:adi
 
