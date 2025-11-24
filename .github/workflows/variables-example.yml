@@ -10,7 +10,7 @@ jobs:
       runs-on: ubuntu-latest
       env: # Job level env variable
         DOCKER_CMD: docker
-        DEPLOY_IMAGE: aditule/test:adi
+        #DEPLOY_IMAGE: aditule/test:adi
       steps:
         - name: Docker Build
           env: # Step level env variable
@@ -18,9 +18,9 @@ jobs:
             IMAGE: alpine
           run: $DOCKER_CMD pull ${{ env.IMAGE }}
         - name: Docker Tag
-          run: docker tag alpine:latest ${{ env.DEPLOY_IMAGE }}
+          run: docker tag alpine:latest ${{ vars.DEPLOY_IMAGE }}
         - name: Docker login
-          run: docker login --username=aditule --password=Cooldudes786*
+          run: docker login --username=${{ secrets.DOCKER_USER }} --password=${{ secrets.DOCKER_PASSWORD }}
         - name: Docker ${{ env.CMD }}
-          run: docker $CMD aditule/test:adi
+          run: docker $CMD ${{ vars.DEPLOY_IMAGE }}
 
